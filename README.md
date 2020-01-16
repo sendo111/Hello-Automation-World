@@ -1,2 +1,4 @@
-# Hello-Automation-World
-技術書典8用のリポジトリ
+バージョン
+-----
+Python=3.8.0  
+Django==2.2  
