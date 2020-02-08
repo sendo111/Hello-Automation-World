@@ -1,0 +1,9 @@
+---
+- name: Create AWS VPC to EC2 etc...
+  hosts: localhost
+  #  connection: local
+  gather_facts: False
+  roles:
+    - ec2
+  tasks:
+    - name:
