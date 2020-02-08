@@ -6,10 +6,10 @@
     </head>
     <body>
         <form id="input_book_data" method="post" action="">{% csrf_token %}
-            書籍名：<input type="text" name="title"><br>
-            著者：<input type="text" name="author"/><br>
-            出版社：<input type="text" name="publisher"/><br>
-            読了日：<input type="date" name="finished_date"/><br>
+            書籍名：<input type="text" name="title" required/><br>
+            著者：<input type="text" name="author" required/><br>
+            出版社：<input type="text" name="publisher" required/><br>
+            読了日：<input type="date" name="finished_date" required/><br>
             <br>
             <button type="submit">登録</button>
         </form>
