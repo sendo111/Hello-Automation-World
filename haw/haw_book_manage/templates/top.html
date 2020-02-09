@@ -7,7 +7,7 @@
         <title>書籍一覧画面</title>
     </head>
     <body>
-        <a href="{% url 'haw:create' %}"><input id="create" type="button" value="追加"></a>
+        <a href="{% url 'haw:create' %}"><input id="create" type="button" value="追加" class="action-button"></a>
         <table>
             <tr>
                 <th>書籍名</th>
@@ -24,10 +24,10 @@
                     <td>{{ book.publisher }}</td>
                     <td>{{ book.finished_date }}</td>
                     <td><form action="{% url 'haw:update' book.id %}" method="post">{% csrf_token %}
-                        <input type="submit" value="更新"></form>
+                        <input id="update" type="submit" value="更新" class="action-button"></form>
                     </td>
                     <td><form action="{% url 'haw:delete' book.id %}" method="post">{% csrf_token %}
-                        <input type="submit" value="削除"></form>
+                        <input id="delete" type="submit" value="削除" class="action-button"></form>
                     </td>
                 </tr>
             {% endfor %}
