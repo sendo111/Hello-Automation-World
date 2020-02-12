@@ -1,4 +1,4 @@
-from .top import top
-from .create import create
-from .update import update
-from .delete import delete
+from .top import top  # noqa
+from .create import create  # noqa
+from .update import update  # noqa
+from .delete import delete  # noqa
