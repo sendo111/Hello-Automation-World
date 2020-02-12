@@ -6,7 +6,8 @@ from ..models import TblBook
 def update(request, book_id):
     template_name = 'update.html'
 
-    if len(request.POST) == 1:
+    post_data_len = 5
+    if len(request.POST) != post_data_len:
         bt = TblBook.objects.values(
             'id',
             'title',
