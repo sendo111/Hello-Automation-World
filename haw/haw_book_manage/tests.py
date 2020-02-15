@@ -47,15 +47,16 @@ class BookCreateTest(TestCase):
 
 
 class BookUpdateTest(TestCase):
-    # データ更新テスト
+    # データ更新テスト(成功)
     def test_update(self):
-        # テストデータを作成
         create_test_data = CreateTestData()
         create_test_data.data_create()
 
         update_data = {
             'title': fake.country(),
             'author': fake.name(),
+            'publisher': fake.company(),
+            'finished_date': fake.date(pattern='%Y-%m-%d', end_datetime=None),
         }
         res = self.client.post(
             reverse('haw:update', kwargs={'book_id': 1}),
@@ -63,11 +64,84 @@ class BookUpdateTest(TestCase):
         )
         self.assertEqual(res.status_code, 200)
 
+    # データ更新テスト(対象データが無い)
+    def test_update_fail_target_data_not_exist(self):
+        create_test_data = CreateTestData()
+        create_test_data.data_create()
+
+        update_data = {
+            'title': fake.country(),
+            'author': fake.name(),
+            'publisher': fake.company(),
+            'finished_date': fake.date(pattern='%Y-%m-%d', end_datetime=None),
+        }
+        with self.assertRaises(Exception):
+            self.client.post(
+                reverse('haw:update', kwargs={'book_id': 999}),
+                data=update_data
+            )
+
+    # データ更新テスト(失敗：タイトルがnull)
+    def test_update_fail_title_null(self):
+        create_test_data = CreateTestData()
+        create_test_data.data_create()
+
+        update_data = {
+            'title': None,
+        }
+        with self.assertRaises(Exception):
+            self.client.post(
+                reverse('haw:update', kwargs={'book_id': 1}),
+                data=update_data
+            )
+
+    # データ更新テスト(失敗：著者がnull)
+    def test_update_fail_author_null(self):
+        create_test_data = CreateTestData()
+        create_test_data.data_create()
+
+        update_data = {
+            'author': None,
+        }
+        with self.assertRaises(Exception):
+            self.client.post(
+                reverse('haw:update', kwargs={'book_id': 1}),
+                data=update_data
+            )
+
+    # データ更新テスト(失敗：出版社がnull)
+    def test_update_fail_publisher_null(self):
+        create_test_data = CreateTestData()
+        create_test_data.data_create()
+
+        update_data = {
+            'title': None,
+        }
+        with self.assertRaises(Exception):
+            self.client.post(
+                reverse('haw:update', kwargs={'book_id': 1}),
+                data=update_data
+            )
+
+    # データ更新テスト(失敗：読了日がnull)
+    def test_update_fail_finished_date_null(self):
+        create_test_data = CreateTestData()
+        create_test_data.data_create()
+
+        update_data = {
+            'finished_date': None,
+        }
+        with self.assertRaises(Exception):
+            self.client.post(
+                reverse('haw:update', kwargs={'book_id': 1}),
+                data=update_data
+            )
+
 
 class BookDeleteTest(TestCase):
-    # データ削除テスト
+
+    # データ削除テスト(成功)
     def test_delete(self):
-        # テストデータを作成
         create_test_data = CreateTestData()
         create_test_data.data_create()
 
@@ -75,3 +149,13 @@ class BookDeleteTest(TestCase):
             reverse('haw:delete', kwargs={'book_id': 1})
         )
         self.assertEqual(res.status_code, 302)
+
+    # データ削除テスト(失敗：対象データ無し)
+    def test_delete_fail_target_data_not_exist(self):
+        create_test_data = CreateTestData()
+        create_test_data.data_create()
+
+        with self.assertRaises(Exception):
+            self.client.post(
+                reverse('haw:delete', kwargs={'book_id': 999})
+            )
