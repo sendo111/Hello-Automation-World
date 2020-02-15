@@ -29,6 +29,6 @@ def update(request, book_id):
             update_bt.save()
         except Exception:
             messages.error(request, f'更新に失敗しました')
-            redirect('/haw/top')
+            redirect('haw:top')
 
-        return redirect('/haw/top')
+        return redirect('haw:top')

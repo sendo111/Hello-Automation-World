@@ -23,6 +23,6 @@ def create(request):
             tb.save()
         except Exception:
             messages.error(request, f'登録に失敗しました')
-            redirect('/haw/top')
+            redirect('haw:top')
 
-        return redirect('/haw/top')
+        return redirect('haw:top')

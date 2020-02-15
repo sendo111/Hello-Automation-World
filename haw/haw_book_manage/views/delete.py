@@ -10,6 +10,6 @@ def delete(request, book_id):
         tb.delete()
     except Exception:
         messages.error(request, f'更新に失敗しました')
-        redirect('/haw/top')
+        redirect('haw:top')
 
-    return redirect('/haw/top')
+    return redirect('haw:top')
