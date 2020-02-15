@@ -11,8 +11,8 @@ class CreateTestData:
     # テストデータの作成
     def data_create(self):
         Book.objects.create(
-            title='はじめての自動化',
-            author='ハロー、オートメーションワールド！',
+            title=fake.country(),
+            author=fake.name(),
             publisher=fake.company(),
             finished_date=fake.date(pattern='%Y-%m-%d', end_datetime=None),
             created_at=timezone.now(),
