@@ -8,7 +8,7 @@ class Book(models.Model):
     publisher = models.CharField(max_length=50, null=False, default='')
     finished_date = models.DateField(default=timezone.now, null=False)
     created_at = models.DateTimeField(default=timezone.now, null=False)
-    updated_at = models.DateTimeField(default=timezone.now, null=True)
+    updated_at = models.DateTimeField(default=timezone.now, null=False)
 
     def __str__(self):
         return self.title
