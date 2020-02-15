@@ -1,13 +1,13 @@
 from django.urls import reverse
 from django.test import TestCase
 from django.utils import timezone
-from .models import TblBook
+from .models import Book
 
 
 class CreateTestData:
     # テストデータの作成
     def data_create(self):
-        TblBook.objects.create(
+        Book.objects.create(
             title='はじめての自動化',
             author='ハロー、オートメーションワールド！',
             publisher='ハロー、オートメーションワールド！',

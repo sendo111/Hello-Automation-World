@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 
-class TblBook(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=100, null=False, default='')
     author = models.CharField(max_length=50, null=False, default='')
     publisher = models.CharField(max_length=50, null=False, default='')

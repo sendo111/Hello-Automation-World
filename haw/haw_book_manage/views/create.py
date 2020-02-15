@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from ..models import TblBook
+from ..models import Book
 
 
 def create(request):
@@ -10,7 +10,7 @@ def create(request):
     if not request.POST:
         return render(request, template_name)
     else:
-        tb = TblBook(
+        tb = Book(
             title=request.POST['title'],
             author=request.POST['author'],
             publisher=request.POST['publisher'],

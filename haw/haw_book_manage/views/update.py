@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from ..models import TblBook
+from ..models import Book
 
 
 def update(request, book_id):
@@ -9,7 +9,7 @@ def update(request, book_id):
 
     post_data_len = 5
     if len(request.POST) != post_data_len:
-        bt = TblBook.objects.values(
+        bt = Book.objects.values(
             'id',
             'title',
             'author',
@@ -18,7 +18,7 @@ def update(request, book_id):
         ).get(id=book_id)
         return render(request, template_name, bt)
     else:
-        update_bt = TblBook.objects.get(id=book_id)
+        update_bt = Book.objects.get(id=book_id)
         update_bt.title = request.POST['title']
         update_bt.author = request.POST['author']
         update_bt.publisher = request.POST['publisher']

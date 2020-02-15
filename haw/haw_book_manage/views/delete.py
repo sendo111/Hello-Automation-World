@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.shortcuts import redirect
-from ..models import TblBook
+from ..models import Book
 
 
 def delete(request, book_id):
-    tb = TblBook.objects.get(id=book_id)
+    tb = Book.objects.get(id=book_id)
 
     try:
         tb.delete()
