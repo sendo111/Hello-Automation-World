@@ -1,7 +1,10 @@
+from faker import Factory
 from django.urls import reverse
 from django.test import TestCase
 from django.utils import timezone
 from .models import Book
+
+fake = Factory.create('ja_JP')
 
 
 class CreateTestData:
@@ -10,8 +13,8 @@ class CreateTestData:
         Book.objects.create(
             title='はじめての自動化',
             author='ハロー、オートメーションワールド！',
-            publisher='ハロー、オートメーションワールド！',
-            finished_date='2020-01-01',
+            publisher=fake.company(),
+            finished_date=fake.date(pattern='%Y-%m-%d', end_datetime=None),
             created_at=timezone.now(),
             updated_at=timezone.now()
         )
@@ -29,10 +32,10 @@ class BookCreateTest(TestCase):
     # データ登録テスト
     def test_create(self):
         create_data = {
-            'title': 'はじめての自動化',
-            'author': 'ハロー、オートメーションワールド！',
-            'publisher': 'ハロー、オートメーションワールド！',
-            'finished_date': '2020-02-01',
+            'title': fake.country(),
+            'author': fake.name(),
+            'publisher': fake.company(),
+            'finished_date': fake.date(pattern='%Y-%m-%d', end_datetime=None),
             'created_at': timezone.now(),
             'updated_at': timezone.now()
         }
@@ -51,8 +54,8 @@ class BookUpdateTest(TestCase):
         create_test_data.data_create()
 
         update_data = {
-            'title': 'はじめての自動化 第二版',
-            'author': 'Hello, Automation World!',
+            'title': fake.country(),
+            'author': fake.name(),
         }
         res = self.client.post(
             reverse('haw:update', kwargs={'book_id': 1}),
