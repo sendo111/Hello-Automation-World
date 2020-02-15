@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from ..models import TblBook
@@ -17,6 +18,11 @@ def create(request):
             created_at=timezone.now(),
             updated_at=timezone.now()
         )
-        tb.save()
+
+        try:
+            tb.save()
+        except Exception:
+            messages.error(request, f'登録に失敗しました')
+            redirect('/haw/top')
 
         return redirect('/haw/top')

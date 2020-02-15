@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from ..models import TblBook
@@ -23,6 +24,11 @@ def update(request, book_id):
         update_bt.publisher = request.POST['publisher']
         update_bt.finished_date = request.POST['finished_date']
         update_bt.updated_at = timezone.now()
-        update_bt.save()
+
+        try:
+            update_bt.save()
+        except Exception:
+            messages.error(request, f'更新に失敗しました')
+            redirect('/haw/top')
 
         return redirect('/haw/top')

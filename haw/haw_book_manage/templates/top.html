@@ -8,6 +8,11 @@
     </head>
     <body>
         <a href="{% url 'haw:create' %}"><input id="create" type="button" value="追加" class="action-button"></a>
+        {% if messages %}
+            {% for message in messages %}
+                <a style="color: red">{{ message }}</a>
+            {% endfor %}
+        {% endif %}
         <table>
             <tr>
                 <th>書籍名</th>
