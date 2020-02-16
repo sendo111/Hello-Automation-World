@@ -1,7 +1,3 @@
-# Please remove '.sample' from this file name.
-
-import os
-
 # You need to regenerate the SECRET_KEY.
 # You can regenerate at the following site:
 # https://miniwebtool.com/ja/django-secret-key-generator/
