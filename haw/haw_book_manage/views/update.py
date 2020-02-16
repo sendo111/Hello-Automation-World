@@ -7,8 +7,7 @@ from ..models import Book
 def update(request, book_id):
     template_name = 'update.html'
 
-    post_data_len = 5
-    if len(request.POST) != post_data_len:
+    if not request.POST:
         bt = Book.objects.values(
             'id',
             'title',
