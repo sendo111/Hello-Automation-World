@@ -14,17 +14,17 @@
         <form id="input_book_data" method="post" action="">{% csrf_token %}
             <div class="cp_iptxt">
                 <label class="ef">
-                    <input type="text" name="title" placeholder="書籍名" required/>
+                    <input type="text" name="title" placeholder="書籍名" pattern=".*\S+.*" title="空白文字は許可されていません" required/>
                 </label>
             </div>
             <div class="cp_iptxt">
                 <label class="ef">
-                    <input type="text" name="author" placeholder="著者" required/>
+                    <input type="text" name="author" placeholder="著者" pattern=".*\S+.*" title="空白文字は許可されていません" required/>
                 </label>
             </div>
             <div class="cp_iptxt">
                 <label class="ef">
-                    <input type="text" name="publisher" placeholder="出版社" required/>
+                    <input type="text" name="publisher" placeholder="出版社" pattern=".*\S+.*" title="空白文字は許可されていません" required/>
                 </label>
             </div>
             <div class="cp_iptxt">
