@@ -7,7 +7,7 @@ from ..models import Book
 def update(request, book_id):
     template_name = 'update.html'
 
-    if not request.POST:
+    if request.method == 'GET':
         bt = Book.objects.values(
             'id',
             'title',
