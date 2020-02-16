@@ -62,7 +62,7 @@ class BookUpdateTest(TestCase):
             reverse('haw:update', kwargs={'book_id': 1}),
             data=update_data
         )
-        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.status_code, 302)
 
     # データ更新テスト(対象データが無い)
     def test_update_fail_target_data_not_exist(self):
