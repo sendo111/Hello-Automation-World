@@ -9,7 +9,8 @@ __pycache__/
 db.sqlite3
 db.sqlite3-journal
 media
-migrations/
+mysql/
+# migrations/
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
@@ -121,3 +122,9 @@ dmypy.json
 # End of https://www.gitignore.io/api/django
 .idea/
 .vscode/
+
+
+# mysql
+.env
+./mysql/*
+./sql/*

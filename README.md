@@ -7,28 +7,44 @@
 ---
 ## Versions
  - python 3.8.0
- - Django 2.2
+ - Django 2.1
+ - nginx 1.16.1
+ - uWSGI 2.0.18
+ - mysql 5.6
 
 ---
-## アプリ起動方法
+## ローカル: アプリ起動方法
 ```
-// 必要なパッケージのインストール
-pip install -r requirements.txt
-
 // manage.pyのディレクトリに移動
-cd haw/
+$ cd haw/
+
+// 必要なパッケージのインストール
+$ pip install -r requirements.txt
 
 // modelからマイグレーションファイルを作成
-python manage.py makemigrations
+$ python manage.py makemigrations
 
 // 作成したマイグレーションファイルをDBに反映
-python manage.py migrate
+$ python manage.py migrate
 
 // サーバーを起動
-python manage.py runserver
+$ python manage.py runserver
 
 // ブラウザでアクセス
 http://127.0.0.1:8000/
+```
+
+---
+## docker-compose: アプリ起動方法
+```
+// ビルド実行
+$ docker-compose build
+
+// コンテナ起動
+$ docker-compose up
+
+// MySQLコンテナに対してマイグレートを実行
+$ docker-compose run haw ./manage.py migrate
 ```
 
 ---
@@ -37,8 +53,8 @@ http://127.0.0.1:8000/
  - アプリ起動方法の手順に記載のパッケージが、インストールされていること
 ```
 // manage.pyのディレクトリに移動
-cd haw
+$ cd haw
 
 // テストを実行
-python manage.py test
+$ python manage.py test
 ```

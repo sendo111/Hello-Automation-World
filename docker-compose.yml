@@ -1,0 +1,48 @@
+version: '3'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.16.1
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./haw/haw_book_manage/static:/static  # [wip]アプリ用staticページ調整中
+    depends_on:
+      - haw
+
+  mysql:
+    image: mysql:5.6
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+    # 下記のDB情報は1章で記述した `local_settings.py` の記述に基づいてへ入力してください
+#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#      MYSQL_DATABASE: ${MYSQL_DATABASE}
+#      MYSQL_USER: ${MYSQL_USER}
+#      MYSQL_PASSWORD: {MYSQL_PASSWORD}
+    # 一旦ベタ書き
+      MYSQL_ROOT_PASSWORD: Xv8eFwmD
+      MYSQL_DATABASE: app
+      MYSQL_USER: user
+      MYSQL_PASSWORD: hogeXv8eFwmD
+      TZ: 'Asia/Tokyo'
+    volumes:  # [wip]自動作成される？調整中
+      - ./mysql:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+
+#[wip]アプリ用ディレクトリ調整中
+  haw: #Hello-Automation-Worldの略でこの名称にしています
+    build: ./haw
+    command: uwsgi --socket :8000 --module haw.wsgi
+    container_name: haw
+    volumes:
+        - ./haw:/haw
+    expose:
+      - "8000"
+    depends_on:
+      - mysql
+    tty: true
